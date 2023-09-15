@@ -34,9 +34,9 @@ Then, run `flutter pub get` to fetch the package.
 
 - import the iphone package: `import 'package:cupertino_page_controller/cupertino_page_controller.dart';`
 
-#### cupertino_page_controller Color (optinnal)
+#### cupertino_page_controller Color (optinal)
 
-- brightness: Brightness (optionnal) to choose theme of widget
+- brightness: Brightness (optional) to choose theme of widget
 
 ```
 brightness: Brightness.dark,
@@ -52,9 +52,9 @@ length: 10,
 
 #### Other propriety
 
-- name: String (optionnal) title of the widget
-- icon: IconData (optionnal) icon at the left
-- function: Function (optionnal) when tap on the widget and route
+- name: String (optional) title of the widget
+- icon: IconData (optional) icon at the left
+- function: Function (optional) when tap on the widget and route
 
 
 ```
