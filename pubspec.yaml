@@ -1,10 +1,10 @@
 name: cupertino_page_controller
 description: allow to check current page in list
 version: 0.0.1
-repository: https://github.com/Antoinegtir/cupertino-page-controller
-homepage: https://github.com/Antoinegtir/cupertino-page-controller
-View/report issues: https://github.com/Antoinegtir/cupertino-page-controller/issues
-contributing: https://github.com/Antoinegtir/cupertino-page-controller/blob/main/CONTRIBUTING.md
+repository: https://github.com/Antoinegtir/cupertino-page-control
+homepage: https://github.com/Antoinegtir/cupertino-page-control
+View/report issues: https://github.com/Antoinegtir/cupertino-page-control/issues
+contributing: https://github.com/Antoinegtir/cupertino-page-control/blob/main/CONTRIBUTING.md
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
