@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CupertinoPageControl extends StatefulWidget {
+class CupertinoPageControl extends StatelessWidget {
   const CupertinoPageControl({
     super.key,
     this.icon,
@@ -23,75 +23,82 @@ class CupertinoPageControl extends StatefulWidget {
   final IconData? icon;
   final Function()? function;
   final Brightness? brightness;
-  @override
-  _CupertinoPageControlState createState() => _CupertinoPageControlState();
-}
 
-class _CupertinoPageControlState extends State<CupertinoPageControl> {
+  static const int kSizeNormalDot = 7;
+  static const int kSizeLittleDot = 5;
+
+  static const int kMaxVisibleDot = 5;
+  static const int kFirstDot = 0;
+
+  static const Color kDarkBackgroundColor = const Color(0xff3d3d4a);
+  static const Color kDarkDotColor = const Color(0xff929398);
+  static const Color kLightBackgroundColor = const Color(0xffbebfc4);
+  static const Color kLightDotColor = Colors.white;
+
   double size(int i) {
-    if (widget.length <= 5) {
-      return 7;
+    if (length <= kMaxVisibleDot) {
+      return kSizeNormalDot.toDouble();
     } else {
-      if (i == 4 && widget.current != widget.length - 1) {
-        return 4;
+      if (i == kMaxVisibleDot - 1 && current != length - 1) {
+        return kSizeLittleDot.toDouble();
       }
-      if (widget.current >= 4 && i == 0) {
-        return 4;
+      if (current >= kMaxVisibleDot - 1 && i == kFirstDot) {
+        return kSizeLittleDot.toDouble();
       }
-      return 7;
+      return kSizeNormalDot.toDouble();
     }
   }
 
   Color color(int i) {
-    if (Brightness.dark == widget.brightness) {
-      if (widget.length <= 5) {
-        if (i == widget.current) {
-          return Colors.white;
+    if (Brightness.dark == brightness) {
+      if (length <= kMaxVisibleDot) {
+        if (i == current) {
+          return kLightDotColor;
         } else {
-          return const Color(0xff929398);
+          return kDarkDotColor;
         }
       } else {
-        if (widget.current >= 3) {
-          if (widget.current == widget.length - 1 && i == 4) {
-            return Colors.white;
+        if (current >= kMaxVisibleDot - 2) {
+          if (current == length - 1 && i == kMaxVisibleDot - 1) {
+            return kLightDotColor;
           } else {
-            if (i == 3 && widget.current != widget.length - 1) {
-              return Colors.white;
+            if (i == kMaxVisibleDot - 2 && current != length - 1) {
+              return kLightDotColor;
             } else {
-              return const Color(0xff929398);
+              return kDarkDotColor;
             }
           }
         } else {
-          if (i == widget.current) {
-            return Colors.white;
+          if (i == current) {
+            return kLightDotColor;
           } else {
-            return const Color(0xff929398);
+            return kDarkDotColor;
           }
         }
       }
     } else {
-      if (widget.length <= 5) {
-        if (i == widget.current) {
-          return Colors.white;
+      if (length <= kMaxVisibleDot) {
+        if (i == current) {
+          return kLightDotColor;
         } else {
-          return const Color(0xffbebfc4);
+          return kLightBackgroundColor;
         }
       } else {
-        if (widget.current >= 3) {
-          if (widget.current == widget.length - 1 && i == 4) {
-            return Colors.white;
+        if (current >= kMaxVisibleDot - 2) {
+          if (current == length - 1 && i == kMaxVisibleDot - 1) {
+            return kLightDotColor;
           } else {
-            if (i == 3 && widget.current != widget.length - 1) {
-              return Colors.white;
+            if (i == kMaxVisibleDot - 2 && current != length - 1) {
+              return kLightDotColor;
             } else {
-              return const Color(0xffbebfc4);
+              return kLightBackgroundColor;
             }
           }
         } else {
-          if (i == widget.current) {
-            return Colors.white;
+          if (i == current) {
+            return kLightDotColor;
           } else {
-            return const Color(0xffbebfc4);
+            return kLightBackgroundColor;
           }
         }
       }
@@ -101,72 +108,62 @@ class _CupertinoPageControlState extends State<CupertinoPageControl> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: widget.function,
+        onTap: function,
         onLongPress: () {
           HapticFeedback.heavyImpact();
         },
         child: Hero(
-          tag: widget.name ?? "",
+          tag: name ?? "",
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Container(
-                color: Brightness.dark == widget.brightness
-                    ? const Color(0xff3d3d4a)
-                    : const Color(0xff929398),
+                color: Brightness.dark == brightness
+                    ? kDarkBackgroundColor
+                    : kLightBackgroundColor,
                 height: 30,
                 width: 100,
                 alignment: Alignment.center,
                 child: Stack(children: [
-                  if (!(widget.name == null || widget.icon == null))
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedOpacity(
-                          opacity: !widget.isSelect ? 1 : 0,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 2),
-                            child: Icon(
-                              widget.icon,
+                  if (!(name == null || icon == null))
+                    AnimatedOpacity(
+                        opacity: !isSelect ? 1 : 0,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              icon,
                               size: 12,
-                              color: Colors.white,
+                              color: kLightDotColor,
                             ),
-                          ),
-                        ),
-                        AnimatedOpacity(
-                          opacity: !widget.isSelect ? 1 : 0,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          child: Text(
-                            widget.name!,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w500,
+                            const SizedBox(width: 2),
+                            Text(
+                              name!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: kLightDotColor,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                          ],
+                        )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (int i = 0; i < widget.length && i < 5; i++)
+                      for (int i = kFirstDot;
+                          i < length && i < kMaxVisibleDot;
+                          i++)
                         Padding(
                           padding: EdgeInsets.only(
-                              top:
-                                  ((widget.name == null || widget.icon == null))
-                                      ? 1
-                                      : 3.5),
+                              top: ((name == null || icon == null)) ? 1 : 3.5),
                           child: AnimatedOpacity(
-                            opacity:
-                                ((widget.name == null || widget.icon == null))
+                            opacity: ((name == null || icon == null))
+                                ? 1
+                                : isSelect
                                     ? 1
-                                    : widget.isSelect
-                                        ? 1
-                                        : 0,
+                                    : 0,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeInOut,
                             child: Padding(
