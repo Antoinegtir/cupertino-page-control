@@ -4,7 +4,7 @@
 
 | Unlimited Index          | 5 Index               | 2 Index                |
 |-----------------------|-----------------------|-----------------------|
-| ![Image 1](./assets/preview1.gif) | ![Image 2](./assets/preview2.gif) | ![Image 3](./assets/preview3.gif) |
+| <img src="./assets/preview1.gif" width="200"/> | <img src="./assets/preview2.gif" width="200"/> | <img src="./assets/preview3.gif" width="200"/> |
 
 
 The `cupertino_page_controller` package allow you to display an controller in order to check your current index inside a list
