@@ -7,15 +7,15 @@
 | <img src="./assets/preview1.gif" width="200"/> | <img src="./assets/preview2.gif" width="200"/> | <img src="./assets/preview3.gif" width="200"/> |
 
 
-The `cupertino_page_controller` package allow you to display an controller in order to check your current index inside a list
+The `cupertino_page_controller` package allows you to display a controller in order to check your current index inside a list
 
 ### Features
 
 - Display index of list
-- Optionnaly add function to tap and redirect to a page
-- Choose dark or ligth mode
+- Optionally add function to tap and redirect to a page
+- Choose dark or light mode
 
-⭐️ Feel free to stars the project if you like it and increase the SEO of this package! ⭐️
+⭐️ Feel free to star the project if you like it and increase the SEO of this package! ⭐️
 
 #### Installation
 
@@ -44,13 +44,13 @@ brightness: Brightness.dark,
 
 #### Length of the list
 
-- length: int (required) to bring the length of the list
+- length: int (required) to specify the length of the list
 
 ```
 length: 10,
 ```
 
-#### Other propriety
+#### Other Properties
 
 - name: String (optional) title of the widget
 - icon: IconData (optional) icon at the left
@@ -67,7 +67,7 @@ function: () {
 
 #### Track Index Animation
 
-Add this variable that will change when you change to a new element of list, this will allow to track the current dot in white and the 2 other variable will `Timer _timer` and `bool isSelect` will allow to create a custom animation transition between "search mode" and dot controller: (required)
+Add this variable that will change when you switch to a new element to a new element of list, this will allow to track the current dot in white and the 2 other variable will `Timer _timer` and `bool isSelect` will allow to create a custom animation transition between "search mode" and dot controller: (required)
 
 ```
 current: current,
